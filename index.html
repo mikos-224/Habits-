@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Prosty, offline'owy tracker codziennych nawyków.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <title>Nawyki</title>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">MOJA RUTYNA</div>
+      <h1 id="greeting">Dzisiaj</h1>
+      <p id="todayLabel"></p>
+    </div>
+    <button class="icon-btn" id="themeBtn" aria-label="Zmień motyw">☾</button>
+  </header>
+
+  <main>
+    <section class="summary card">
+      <div class="progress-ring" id="progressRing">
+        <div><strong id="progressPct">0%</strong><span>dzisiaj</span></div>
+      </div>
+      <div class="summary-text">
+        <span class="muted">Dzisiejszy postęp</span>
+        <h2 id="summaryTitle">Zaczynamy!</h2>
+        <p id="summaryText">Dodaj pierwszy nawyk i zacznij budować swoją rutynę.</p>
+      </div>
+    </section>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="today">Dzisiaj</button>
+      <button class="tab" data-tab="stats">Statystyki</button>
+    </nav>
+
+    <section id="today" class="tab-page active">
+      <div class="section-head">
+        <div><h2>Twoje nawyki</h2><span id="habitCount" class="muted"></span></div>
+        <button class="primary small" id="addBtn">+ Dodaj</button>
+      </div>
+      <div id="habitList" class="habit-list"></div>
+      <div id="emptyState" class="empty card">
+        <div class="empty-icon">🌱</div>
+        <h3>Brak nawyków</h3>
+        <p>Dodaj czynności, które chcesz wykonywać każdego dnia.</p>
+        <button class="primary" id="emptyAddBtn">Dodaj pierwszy nawyk</button>
+      </div>
+    </section>
+
+    <section id="stats" class="tab-page">
+      <div class="section-head"><div><h2>Statystyki</h2><span class="muted">Twoja regularność</span></div></div>
+      <div class="stat-grid">
+        <div class="stat card"><span>Ukończone</span><strong id="statDone">0</strong><small>łącznie</small></div>
+        <div class="stat card"><span>Realizacja</span><strong id="statRate">0%</strong><small>od początku</small></div>
+        <div class="stat card"><span>Najlepsza seria</span><strong id="statBest">0</strong><small>dni</small></div>
+        <div class="stat card"><span>Nawyki</span><strong id="statHabits">0</strong><small>aktywne</small></div>
+      </div>
+      <div class="card history-card">
+        <div class="section-head"><div><h3>Ostatnie 7 dni</h3></div></div>
+        <div id="weekChart" class="week-chart"></div>
+      </div>
+      <div class="card">
+        <div class="section-head"><div><h3>Wyniki nawyków</h3></div></div>
+        <div id="habitStats"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Twoje dane są zapisywane tylko na tym urządzeniu.</footer>
+</div>
+
+<div class="modal hidden" id="modal">
+  <div class="modal-box">
+    <button class="close" id="closeModal">×</button>
+    <h2 id="modalTitle">Nowy nawyk</h2>
+    <p class="muted">Co chcesz robić regularnie?</p>
+    <label>Nazwa
+      <input id="habitName" maxlength="40" placeholder="np. Czytanie książki">
+    </label>
+    <label>Emoji
+      <div class="emoji-row" id="emojiRow"></div>
+    </label>
+    <div class="modal-actions">
+      <button class="secondary" id="cancelBtn">Anuluj</button>
+      <button class="primary" id="saveBtn">Zapisz</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
